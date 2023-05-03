@@ -1,4 +1,6 @@
 using Classroom.Data.Context;
+using Classroom.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=avtotest123_;" +
                          "User Id=avtotest123_; Password=Ac0143013");
 });
+builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireNonAlphanumeric=false;
+    options.Password.RequireLowercase=false;
+    options.Password.RequireUppercase=false;
+}).AddEntityFrameworkStores<AppDbContext>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

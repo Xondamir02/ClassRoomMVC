@@ -1,0 +1,25 @@
+﻿@model SignInUserDto
+
+<div class="d-flex justify-content-center" style="flex-wrap:wrap;">
+
+    <form class="row g-3 col-md-5" style="border-radius: 25px;
+    margin-top: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;" asp-controller="Users" asp-action="SignIn"  method="post">
+    
+        <h1 class="col-12" style="text-align:center">Sign In </h1>
+
+        <div>
+            <input name="Username" class="form-control" asp-for="Username" type="text" placeholder="Username" />
+            <span class="text-danger" asp-validation-for="Username"></span>
+        </div>
+
+        <div>
+            <input  name="Password" class="form-control" asp-for="Password" type="text" placeholder="Password"/>
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+
+        <button class="form-control btn-primary"  type="submit" > Sign In</button>
+        <a class="link-info" asp-controller="Users" asp-action="SignUp">Sign Up</a>
+    </form>
+</div>

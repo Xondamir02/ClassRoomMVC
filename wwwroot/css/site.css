@@ -16,3 +16,55 @@ html {
 body {
   margin-bottom: 60px;
 }
+.nima {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.animatsiya {
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+}
+
+    .animatsiya img {
+        position: absolute;
+        left: 50%;
+        top: 58%;
+        bottom: 0;
+        transform: translate(-50%, -50%);
+        animation: chiqish 2s ease-in-out forwards;
+    }
+
+.mazkaz {
+    position: absolute;
+    bottom: -50px;
+    width: 150%;
+    height: 50px;
+    background-color: #fff;
+    animation: toxta 2s ease-in-out forwards;
+}
+
+@keyframes chiqish {
+    0% {
+        opacity: 0;
+        bottom: -50px;
+
+    }
+
+    100% {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+@keyframes toxta {
+    0% {
+        bottom: 0;
+    }
+
+    100% {
+        bottom: -50px;
+    }
+}
