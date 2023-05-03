@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRoomMVC", "ClassRoomMVC.csproj", "{9595C870-E77B-47C5-BEE8-5E98BBDEF6D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRoomMVC", "ClassRoomMvc\ClassRoomMVC.csproj", "{9595C870-E77B-47C5-BEE8-5E98BBDEF6D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classroom.Data", "..\Classroom.Data\Classroom.Data.csproj", "{C7671967-5E48-4936-B1DC-7CED38A64171}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classroom.Data", "Classroom.Data\Classroom.Data.csproj", "{C7671967-5E48-4936-B1DC-7CED38A64171}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

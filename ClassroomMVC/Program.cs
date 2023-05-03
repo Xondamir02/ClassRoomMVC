@@ -3,6 +3,8 @@ using Classroom.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+Console.Clear();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
