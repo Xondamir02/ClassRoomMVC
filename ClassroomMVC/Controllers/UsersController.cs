@@ -3,7 +3,7 @@ using ClassRoomMVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+ 
 namespace ClassRoomMVC.Controllers
 {
     public class UsersController : Controller
@@ -36,8 +36,11 @@ namespace ClassRoomMVC.Controllers
                 Firstname = createUserDto.Firstname,
                 Lastname = createUserDto.Lastname,
                 PhoneNumber = createUserDto.PhoneNumber,
-                UserName = createUserDto.Username
+                UserName = createUserDto.Username,
+                Data = DateTime.Now,
+                PhotoUrl = await Services.FileHelper.SaveUserFile(createUserDto.Photo)
             };
+
             var result = await _userManager.CreateAsync(user, createUserDto.Password);
 
             if (!result.Succeeded)
@@ -75,5 +78,24 @@ namespace ClassRoomMVC.Controllers
             }
             return RedirectToAction("Profile");
         }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("SignIn");
+        }
+
+        //public static string SavePhoto(IFormFile file)
+        //{
+        //    if (!Directory.Exists("wwwroot/UserImages"))
+        //        Directory.CreateDirectory("wwwroot/UserImages");
+
+        //    var fileName = Guid.NewGuid() + ".jpg";
+        //    var ms = new MemoryStream();
+        //    file.CopyTo(ms);
+        //    System.IO.File.WriteAllBytes(Path.Combine("wwwroot", "UserImages", fileName), ms.ToArray());
+
+        //    return "/UserImages/" + fileName;
+        //}
     }
 }

@@ -12,6 +12,7 @@ namespace Classroom.Data.Entities
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string PhotoUrl { get; set; }
+        public DateTime Data { get; set; }
         public List<UserSchool> UserSchools { get; set; }
     }
 }

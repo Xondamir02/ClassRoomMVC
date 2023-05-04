@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Classroom.Data.Migrations
 {
-    public partial class InitDb : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,7 @@ namespace Classroom.Data.Migrations
                     firstname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     lastname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     photourl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),

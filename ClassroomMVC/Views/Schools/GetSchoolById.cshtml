@@ -1,0 +1,35 @@
+﻿@using Classroom.Data.Entities
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Classroom.Data.Entities.School
+
+<h1>School</h1>
+<h3>Name: @Model.Name</h3>
+<h3>Description: @Model.Description</h3>
+<h3>Creator: @Model.UserSchools!.First(user => user.Type == EUserSchool.Creater).User.UserName</h3>
+
+<partial name="JoinSchoolLink"/>
+
+<h1>Users</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < Model.UserSchools!.Count; i++)
+    {
+        var userSchool = Model.UserSchools[i];
+
+        <tr>
+            <th scope="row">@(i + 1)</th>
+            <td>@userSchool.User.Firstname</td>
+            <td>@userSchool.User.UserName</td>
+            <td>@userSchool.Type</td>
+        </tr>
+    }
+    </tbody>
+</table>

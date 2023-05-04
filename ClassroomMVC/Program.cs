@@ -1,5 +1,6 @@
 using Classroom.Data.Context;
 using Classroom.Data.Entities;
+using ClassRoomMVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=avtotest123_;" +
-                         "User Id=avtotest123_; Password=Ac0143013");
+                         "User Id=avtotest123_; Password=asd123");
 });
 builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
 {
@@ -20,7 +21,16 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
     options.Password.RequireNonAlphanumeric=false;
     options.Password.RequireLowercase=false;
     options.Password.RequireUppercase=false;
+
 }).AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Users/SignIn";
+});
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<UserProvider>();
 
 
 var app = builder.Build();

@@ -1,0 +1,32 @@
+﻿@model CreateSchoolDto
+
+<div class="d-flex justify-content-center" style="flex-wrap:wrap;">
+
+    <form class="row g-3 col-md-5" style="border-radius: 25px;
+    margin-top: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;" asp-controller="Schools" asp-action="CreateSchool" enctype="multipart/form-data" method="post">
+    
+        <h1 class="col-12" style="text-align:center">Create School </h1>
+
+        
+        <div>
+            <input  name="Photo" class="form-control" asp-for="Photo" type="file" />
+            <span class="text-danger"  asp-validation-for="Photo"></span>
+        </div>
+        
+        <div>
+            <input  name="Name" class="form-control" asp-for="Name" type="text" placeholder="School Name"/>
+            <span class="text-danger"  asp-validation-for="Name"></span>
+        </div>
+
+        <div>
+            <input name="Description" class="form-control" asp-for="Description" type="text" placeholder="Description" />
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        
+
+        <button class="form-control btn-primary"  type="submit" >Add School</button>
+
+    </form>
+</div>

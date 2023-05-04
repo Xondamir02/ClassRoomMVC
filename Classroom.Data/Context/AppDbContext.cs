@@ -12,7 +12,7 @@ namespace Classroom.Data.Context
             
         }
 
-
+        public DbSet<School> Schools { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserSchool> UserSchools { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

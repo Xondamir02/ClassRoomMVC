@@ -1,0 +1,13 @@
+﻿@using ClassRoomMVC.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Classroom.Data.Entities.School
+@inject UserProvider UserProvider
+
+@{
+    var userId = UserProvider.UserId;
+    var isUserExistsInSchool = Model.UserSchools!.Any(user => user.User.Id == userId);
+    if (!isUserExistsInSchool)
+    {
+        <a class="btn btn-primary" asp-action="JoinSchool" asp-route-id="@Model.Id">Join</a>
+    }
+}

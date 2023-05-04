@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Classroom.Data\Classroom.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\SchoolFiles\" />
+  </ItemGroup>
+
 </Project>

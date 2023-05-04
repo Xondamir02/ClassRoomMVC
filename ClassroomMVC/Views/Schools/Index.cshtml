@@ -1,0 +1,30 @@
+﻿@model List<Classroom.Data.Entities.School>
+
+<h1>Schools </h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Users</th>
+        <th scope="col">View</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        var school = Model[i];
+
+        <tr>
+            <th scope="row">@(i + 1)</th>
+            <td>@school.Name</td>
+            <td>@school.Description</td>
+            <td>@school.UserSchools?.Count</td>
+            <td>
+                <a class="btn btn-primary" asp-action="GetSchoolById" asp-route-id="@school.Id">View</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
