@@ -1,0 +1,18 @@
+﻿﻿@using ClassRoomMVC.Services
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Classroom.Data.Entities
+@using ClassRoomMVC.Services
+@model Classroom.Data.Entities.School
+@inject UserProvider UserProvider
+
+@{
+    if (Model.UserSchools.Any(s => s.UserId == UserProvider.UserId
+                                   && (s.Type == EUserSchool.Creater 
+                                       || s.Type == EUserSchool.Admin)))
+    {
+        <a class="btn btn-primary" 
+           asp-controller="Schools" 
+           asp-action="UpdateSchool" 
+           asp-route-id="@Model.Id">Update</a>
+    }
+}

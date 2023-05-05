@@ -33,8 +33,6 @@ public class SchoolsController : Controller
     [HttpGet]
     public IActionResult CreateSchool()
     {
-
-
         return View();
     }
 
@@ -108,6 +106,45 @@ public class SchoolsController : Controller
     }
 
 
+    [HttpGet]
+    public async Task<IActionResult> UpdateSchool(Guid id)
+    {
+        var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == id);
+        ViewBag.Id = id;
+
+        return View(new UpdateSchoolDto()
+        {
+            Name = school.Name,
+            Description = school.Description,
+        });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateSchool(Guid id, UpdateSchoolDto updateSchoolDto)
+    {
+        var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == id);
+        school.Name=updateSchoolDto.Name;
+        school.Description=updateSchoolDto.Description;
+        if (updateSchoolDto.Photo != null)
+        {
+            school.PhotoUrl = await FileHelper.SaveSchoolFile(updateSchoolDto.Photo);
+        }
+        await _context.SaveChangesAsync();
+        return RedirectToAction("GetSchoolById", new { id = school.Id });
+    }
+
+    public async Task<IActionResult> UpdateUserSchoolRole(Guid schoolId, Guid userId, EUserSchool role)
+    {
+        var userSchool = await _context.UserSchools
+            .FirstOrDefaultAsync(u => u.UserId == userId && u.SchoolId == schoolId);
+
+        if (userSchool.Type != EUserSchool.Creater && role != EUserSchool.Creater)
+            userSchool.Type = role;
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("GetSchoolById", new { id = schoolId });
+    }
 
 
 }

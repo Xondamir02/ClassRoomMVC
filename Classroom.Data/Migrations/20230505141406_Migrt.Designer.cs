@@ -4,6 +4,7 @@ using Classroom.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Classroom.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505141406_Migrt")]
+    partial class Migrt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,14 +51,20 @@ namespace Classroom.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("description");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("name");
 
                     b.Property<Guid>("SchoolId")
                         .HasColumnType("uniqueidentifier");
@@ -167,21 +175,6 @@ namespace Classroom.Data.Migrations
                     b.HasIndex("SchoolId");
 
                     b.ToTable("users_school", (string)null);
-                });
-
-            modelBuilder.Entity("Classroom.Data.Entities.UserScience", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ScienceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("UserId", "ScienceId");
-
-                    b.HasIndex("ScienceId");
-
-                    b.ToTable("UserSciences");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -318,7 +311,7 @@ namespace Classroom.Data.Migrations
             modelBuilder.Entity("Classroom.Data.Entities.Science", b =>
                 {
                     b.HasOne("Classroom.Data.Entities.School", "School")
-                        .WithMany("Sciences")
+                        .WithMany()
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -341,25 +334,6 @@ namespace Classroom.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("School");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Classroom.Data.Entities.UserScience", b =>
-                {
-                    b.HasOne("Classroom.Data.Entities.Science", "Science")
-                        .WithMany("UserSciences")
-                        .HasForeignKey("ScienceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Classroom.Data.Entities.User", "User")
-                        .WithMany("UserSciences")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Science");
 
                     b.Navigation("User");
                 });
@@ -417,21 +391,12 @@ namespace Classroom.Data.Migrations
 
             modelBuilder.Entity("Classroom.Data.Entities.School", b =>
                 {
-                    b.Navigation("Sciences");
-
                     b.Navigation("UserSchools");
-                });
-
-            modelBuilder.Entity("Classroom.Data.Entities.Science", b =>
-                {
-                    b.Navigation("UserSciences");
                 });
 
             modelBuilder.Entity("Classroom.Data.Entities.User", b =>
                 {
                     b.Navigation("UserSchools");
-
-                    b.Navigation("UserSciences");
                 });
 #pragma warning restore 612, 618
         }

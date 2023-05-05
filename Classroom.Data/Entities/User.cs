@@ -14,5 +14,6 @@ namespace Classroom.Data.Entities
         public string PhotoUrl { get; set; }
         public DateTime Data { get; set; }
         public List<UserSchool> UserSchools { get; set; }
+        public List<UserScience>? UserSciences { get; set; }
     }
 }

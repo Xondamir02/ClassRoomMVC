@@ -10,11 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=avtotest123_;" +
                          "User Id=avtotest123_; Password=asd123");
 });
+
+
 builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
 {
     options.Password.RequireDigit = false;
@@ -23,6 +26,7 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
     options.Password.RequireUppercase=false;
 
 }).AddEntityFrameworkStores<AppDbContext>();
+
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

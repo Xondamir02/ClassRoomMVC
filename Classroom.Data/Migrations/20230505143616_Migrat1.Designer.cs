@@ -4,6 +4,7 @@ using Classroom.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Classroom.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505143616_Migrat1")]
+    partial class Migrat1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,7 +356,7 @@ namespace Classroom.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Classroom.Data.Entities.User", "User")
-                        .WithMany("UserSciences")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -430,8 +432,6 @@ namespace Classroom.Data.Migrations
             modelBuilder.Entity("Classroom.Data.Entities.User", b =>
                 {
                     b.Navigation("UserSchools");
-
-                    b.Navigation("UserSciences");
                 });
 #pragma warning restore 612, 618
         }
