@@ -13,4 +13,9 @@ namespace Classroom.Data.Entities
         Teacher,
         Student
     }
+    public enum EUserScience
+    {
+        Teacher,
+        Student
+    }
 }

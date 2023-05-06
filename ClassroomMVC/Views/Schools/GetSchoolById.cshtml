@@ -3,13 +3,40 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model Classroom.Data.Entities.School
 @inject UserProvider UserProvider
+
+@*
 <h1>School</h1>
 <h3>Name: @Model.Name</h3>
 <h3>Description: @Model.Description</h3>
 <h3>Creator: @Model.UserSchools!.First(user => user.Type == EUserSchool.Creater).User.UserName</h3>
+<a class="btn btn-primary" asp-area="" asp-controller="Science" asp-action="Index" asp-route-schoolId="@Model.Id">Sciences</a>
 
 <partial name="JoinSchoolLink"/>
 <partial name="UpdateSchoolLink"/>
+*@
+<div class="row col-lg-12 col-md-12 col-sm-12 gap-3 d-flex ">
+
+
+
+    @*var science = Model.Sciences[i];*@
+
+    <div class="card" style="width: 60%;box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
+        <img src="/Image/A9.jpg" class="card-img-top" alt="RASM">
+        <div class="card-body">
+            <h4 class="card-title">Name: @Model.Name</h4>
+
+
+            <p class="card-text">Description: @Model.Description</p>
+            <p class="card-text">Creator: @Model.UserSchools!.First(user => user.Type == EUserSchool.Creater).User.UserName</p>
+
+            <a class="btn btn-primary" asp-area="" asp-controller="Science" asp-action="Index" asp-route-schoolId="@Model.Id">Sciences</a>
+            <partial name="JoinSchoolLink"/>
+            <partial name="UpdateSchoolLink"/>
+        </div>
+    </div>
+
+</div>
+
 
 <h1>Users</h1>
 <table class="table">
@@ -22,7 +49,7 @@
     </tr>
     </thead>
     <tbody>
- @{
+    @{
         var user = Model.UserSchools.FirstOrDefault(u => u.UserId == UserProvider.UserId);
         for (var i = 0; i < Model.UserSchools!.Count; i++)
         {
@@ -34,8 +61,9 @@
                 <td>@userSchool.User.UserName</td>
             
                 @{
-                    if (userSchool.UserId != UserProvider.UserId  && userSchool.Type != EUserSchool.Creater &&
-                        (user.Type == EUserSchool.Admin || user.Type == EUserSchool.Creater))
+                    if (userSchool.UserId != UserProvider.UserId && userSchool.Type != EUserSchool.Creater &&
+                        (user?.Type == EUserSchool.Admin || user?.Type == EUserSchool.Creater))
+
                     {
                         <td>
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -62,3 +90,4 @@
     }
     </tbody>
 </table>
+

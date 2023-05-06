@@ -4,6 +4,7 @@ using Classroom.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Classroom.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505190753_Migra3")]
+    partial class Migra3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,33 +23,6 @@ namespace Classroom.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Classroom.Data.Entities.JoinScienceRequest", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("FromUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsJoinded")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("ScienceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ToUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromUserId");
-
-                    b.HasIndex("ScienceId");
-
-                    b.ToTable("JoinScienceRequests");
-                });
 
             modelBuilder.Entity("Classroom.Data.Entities.School", b =>
                 {
@@ -343,25 +318,6 @@ namespace Classroom.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Classroom.Data.Entities.JoinScienceRequest", b =>
-                {
-                    b.HasOne("Classroom.Data.Entities.User", "FromUser")
-                        .WithMany()
-                        .HasForeignKey("FromUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Classroom.Data.Entities.Science", "Science")
-                        .WithMany()
-                        .HasForeignKey("ScienceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FromUser");
-
-                    b.Navigation("Science");
                 });
 
             modelBuilder.Entity("Classroom.Data.Entities.Science", b =>

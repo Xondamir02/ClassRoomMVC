@@ -1,0 +1,37 @@
+﻿@using Classroom.Data.Entities
+@using ClassRoomMVC.Services
+@model Classroom.Data.Entities.Science
+@inject UserProvider UserProvider
+
+<h1>Science</h1>
+<h3>Name: @Model.Name</h3>
+<h3>Description: @Model.Description</h3>
+<h3>Teacher: @Model.UserSciences!.First(user=>user.Type == EUserScience.Teacher).User?.UserName</h3>
+
+<a class="btn btn-secondary" asp-action="SendJoinScienceRequest" asp-route-scienceId="@Model.Id" >Send join request</a>
+<h1>Students</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        for (var i = 0; i < Model.UserSciences!.Count; i++)
+        {
+            var userSchool = Model.UserSciences[i];
+
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@userSchool.User.Firstname</td>
+                <td>@userSchool.User.UserName</td>
+                <td>@userSchool.Type</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

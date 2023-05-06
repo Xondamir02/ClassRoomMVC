@@ -17,6 +17,8 @@ namespace Classroom.Data.Context
         public DbSet<UserSchool> UserSchools { get; set; }
         public DbSet<Science> Sciences { get; set; }
         public DbSet<UserScience> UserSciences { get; set; }
+        public DbSet<JoinScienceRequest> JoinScienceRequests { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

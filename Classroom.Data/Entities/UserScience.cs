@@ -12,6 +12,7 @@ namespace Classroom.Data.Entities
         public User? User { get; set; }
         public Guid ScienceId { get; set; }
         public Science? Science { get; set; }
-        
+        public EUserScience Type { get; set; }
+
     }
 }

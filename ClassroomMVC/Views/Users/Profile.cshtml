@@ -1,4 +1,9 @@
-﻿@model Classroom.Data.Entities.User
+﻿@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Classroom.Data.Context
+@inject AppDbContext DbContext
+@model Classroom.Data.Entities.User
+
 @{
     ViewData["Title"] = "Profile";
 }
@@ -22,7 +27,9 @@
                 <h1>Firstname: @Model.Firstname</h1>
                 <h1>Lastname: @Model.Lastname</h1>
                 <h1>UserName: @Model.UserName</h1>
+                
             </div>
+            <a class="btn btn-primary" asp-controller="Users" asp-action="Logout">Logout</a>
             
             <span >Joined at @Model.Data</span> 
                                             
@@ -33,3 +40,46 @@
 <style>
 
 </style>
+<h1>Join science requests</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Request</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var joinRequests = await DbContext.JoinScienceRequests
+            .Where(r => r.ToUserId == Model.Id && r.IsJoinded == false)
+            .Include(r => r.Science)
+            .Include(r => r.FromUser)
+            .ToListAsync();
+
+        for (var i = 0; i < joinRequests.Count; i++)
+        {
+            var joinRequest = joinRequests[i];
+
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td><strong>@joinRequest.FromUser.UserName</strong> requested to join <strong>@joinRequest.Science.Name</strong></td>
+                <td>
+                    <a class="btn btn-primary" 
+                       asp-controller="Science" 
+                       asp-action="JoinScience"
+                       asp-route-isJoin="true"
+                       asp-route-joinRequestId="@joinRequest.Id">Join</a>
+
+                    <a class="btn btn-primary" 
+                       asp-controller="Science" 
+                       asp-action="JoinScience"
+                       asp-route-isJoin="false"
+                       asp-route-joinRequestId="@joinRequest.Id">Reject</a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

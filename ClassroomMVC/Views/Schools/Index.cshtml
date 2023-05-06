@@ -1,7 +1,12 @@
 ﻿@model List<Classroom.Data.Entities.School>
 
 <h1>Schools </h1>
-<table class="table">
+<a class="btn btn-primary" asp-area="" asp-controller="Schools" asp-action="CreateSchool">Create</a>
+
+<br/>
+<br/>
+
+@*<table class="table">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -29,3 +34,26 @@
     }
     </tbody>
 </table>
+*@
+
+<div class="row col-lg-12 col-md-12 col-sm-12 gap-3 d-flex justify-content-center">
+
+
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        var school = Model[i];
+
+        <div class="card" style="width: 30%;box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
+            <img src="@school.PhotoUrl" class="card-img-top" alt="RASM">
+            <div class="card-body">
+                <h4 class="card-title">Name: @school.Name</h4>
+
+
+                    <p class="card-text">Description: @school.Description</p>
+                    <p class="card-text">Users: @school.UserSchools.Count</p>
+
+                <a class="btn btn-primary" asp-action="GetSchoolById" asp-route-id="@school.Id">View</a>
+            </div>
+        </div>
+    }
+</div>

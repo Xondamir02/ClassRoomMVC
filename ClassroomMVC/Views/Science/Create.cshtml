@@ -1,0 +1,18 @@
+﻿@model CreateScienceDto
+
+@{
+    ViewData["Title"] = "Add Science";
+}
+
+<h1 style="margin: auto; text-align: center">Create school</h1>
+<form class="row g-3" style="width: 400px; margin: auto" enctype="multipart/form-data" asp-action="Create" asp-route-schoolId="@ViewBag.SchoolId" method="post">
+    <div>
+        <input name="Name" class="form-control" asp-for="Name" type="text" placeholder="Name" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <input name="Description" class="form-control" asp-for="Description" type="text" placeholder="Description" />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <button class="form-control" type="submit">Add</button>
+</form>
