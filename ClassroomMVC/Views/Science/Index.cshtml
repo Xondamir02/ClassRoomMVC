@@ -1,10 +1,22 @@
-﻿@model Classroom.Data.Entities.School
+﻿@model List<Classroom.Data.Entities.Science>
 
 <h1>Sciences </h1>
-<a class="btn btn-primary" asp-area="" asp-action="Create" asp-route-schoolId="@Model.Id">Create</a>
+<a class="btn btn-primary" asp-area="" asp-action="Create" asp-route-schoolId="@ViewBag.SchoolId">Create</a>
 <br/>
 <br/>
 <br/>
+<div style="display: flex; align-items: center; gap: 18rem">
+    <form class="row g-3" style="display: flex; flex-direction: column" asp-action="Index" asp-route-schoolId="@ViewBag.SchoolId" method="get">
+        <div class="input-group">
+            <input type="hidden" name="SchoolId" value="@ViewBag.SchoolId">
+            <input type="text" name="Name" class="form-control" placeholder="Science's name" aria-label="Science's name" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 @*<table class="table">
     <thead>
     <tr>
@@ -37,9 +49,9 @@
 <div class="row col-lg-12 col-md-12 col-sm-12 gap-3 d-flex justify-content-center">
 
 
-    @for (var i = 0; i <  Model.Sciences?.Count; i++)
+    @for (var i = 0; i <  Model.Count; i++)
     {
-        var science = Model.Sciences[i];
+        var science = Model[i];
 
         <div class="card" style="width: 30%;box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
             <img src="/Image/A9.jpg" class="card-img-top" alt="RASM">
@@ -55,3 +67,44 @@
         </div>
     }
 </div>
+
+<table class="table">
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">Name</th>
+<th scope="col">Description</th>
+    <th scope="col">
+        @{
+            if (ViewBag.OrderByUsers)
+            {
+                <a class="btn btn-primary" asp-action="Index" asp-route-schoolId="@ViewBag.SchoolId" asp-route-orderByUsers="false">Users</a>
+            }
+            else
+            {
+                <a class="btn btn-light" asp-action="Index" asp-route-schoolId="@ViewBag.SchoolId" asp-route-orderByUsers="true">Users</a>
+            }
+        }
+    </th>
+    <th scope="col">View</th>
+</tr>
+</thead>
+<tbody>
+
+@for (var i = 0; i < Model?.Count; i++)
+{  var science = Model[i];
+
+    <tr>
+        <th scope="row">@(i + 1)</th>
+        <td>@science.Name</td>
+        <td>@science.Description</td>
+        <td>@science.UserSciences?.Count</td>
+        <td>
+            <a class="btn btn-primary" asp-action="GetById" asp-route-scienceId="@science.Id">View</a>
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+
+

@@ -3,12 +3,34 @@
 @model Classroom.Data.Entities.Science
 @inject UserProvider UserProvider
 
-<h1>Science</h1>
+@*<h1>Science</h1>
 <h3>Name: @Model.Name</h3>
 <h3>Description: @Model.Description</h3>
 <h3>Teacher: @Model.UserSciences!.First(user=>user.Type == EUserScience.Teacher).User?.UserName</h3>
 
-<a class="btn btn-secondary" asp-action="SendJoinScienceRequest" asp-route-scienceId="@Model.Id" >Send join request</a>
+<a class="btn btn-secondary" asp-action="SendJoinScienceRequest" asp-route-scienceId="@Model.Id" >Send join request</a>*@
+
+<div class="row col-lg-12 col-md-12 col-sm-12 gap-3 d-flex justify-content-center">
+
+
+    @{
+       
+
+        <div class="card" style="width: 30%;box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;">
+            <img src="/Image/A9.jpg" class="card-img-top" alt="RASM">
+            <div class="card-body">
+                <h4 class="card-title">Name: @Model.Name</h4>
+
+
+                <p class="card-text">Description: @Model.Description</p>
+                <p class="card-text">Teacher: @Model.UserSciences!.First(user=>user.Type == EUserScience.Teacher).User?.UserName</p>
+
+                <a class="btn btn-secondary" asp-action="SendJoinScienceRequest" asp-route-scienceId="@Model.Id" >Send join request</a>
+            </div>
+        </div>
+    }
+</div>
+
 <h1>Students</h1>
 <table class="table">
     <thead>

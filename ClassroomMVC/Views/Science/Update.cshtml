@@ -1,7 +1,7 @@
-﻿@model UpdateSchoolDto
+﻿@model UpdateScienceDto
 
 @{
-    ViewData["Title"] = "Update school";
+    ViewData["Title"] = "Update Science";
 }
 
 
@@ -10,15 +10,12 @@
     <form class="row g-3 col-md-5" style="border-radius: 25px;
     margin-top: 1rem;
     padding: 2rem;
-    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;" asp-controller="Schools" asp-action="UpdateSchool" enctype="multipart/form-data" method="post">
+    box-shadow: 0 0rem 3rem rgba(8,7,16,0.6)!important;" asp-controller="Science" asp-action="Update"  method="post">
     
         <h1 class="col-12" style="text-align:center">Update School </h1>
 
         
-        <div>
-            <input  name="Photo" class="form-control" asp-for="Photo" type="file" />
-            <span class="text-danger"  asp-validation-for="Photo"></span>
-        </div>
+
         
         <div>
             <input  name="Name" class="form-control" asp-for="Name" type="text" placeholder="School Name"/>
@@ -31,7 +28,7 @@
         </div> 
         
 
-        <button class="form-control btn-primary"  type="submit" >Update School</button>
+        <button class="form-control btn-primary"  type="submit" >Update Science</button>
 
     </form>
 </div>

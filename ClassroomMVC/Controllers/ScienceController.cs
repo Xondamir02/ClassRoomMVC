@@ -18,7 +18,7 @@ namespace ClassRoomMVC.Controllers
             _context = context;
             _userProvider = userProvider;
         }
-        public async Task<IActionResult> Index(Guid schoolId)
+        public async Task<IActionResult> Index(Guid schoolId, string? name = null, bool orderByUsers = false)
         {
 
                 var school = await _context.Schools
@@ -26,7 +26,34 @@ namespace ClassRoomMVC.Controllers
                 .ThenInclude(s => s.UserSciences)
                 .FirstOrDefaultAsync(s => s.Id == schoolId);
 
-            return View(school);
+                ViewBag.SchoolId = schoolId;
+                ViewBag.OrderByUsers = orderByUsers;
+                var query = _context.Sciences
+                    .Include(s => s.UserSciences);
+
+
+                // var query = select * from sciences;
+
+            if (name != null)
+                {
+                    // query += where name.contains(str);
+                    query = query.Where(s => s.Name.Contains(name))
+                        .Include(s => s.UserSciences);
+                }
+
+                if (orderByUsers)
+                {
+
+                    // query += order by users.count;
+                    var sciences = await query
+                        .Where(s => s.SchoolId == schoolId)
+                        .OrderByDescending(s => s.UserSciences.Count).ToListAsync();
+
+                    return View(sciences);
+                }
+
+
+                return View(await query.Where(s => s.SchoolId == schoolId).ToListAsync());
         }
 
         public async Task<IActionResult> GetById(Guid scienceId)
@@ -155,6 +182,31 @@ namespace ClassRoomMVC.Controllers
 
             return RedirectToAction("Profile", "Users");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid scienceId)
+        {
+            var science = await _context.Sciences.FirstOrDefaultAsync(sc => sc.Id == scienceId);
+            ViewBag.Id=scienceId;
+            return View(new UpdateScienceDto()
+            {
+                Name = science.Name,
+                Description = science.Description,
+            });
+        }
+
+        //public async Task<IActionResult> Update(Guid scienceId, UpdateScienceDto updateScienceDto)
+        //{
+        //    var science = await _context.Sciences.FirstOrDefaultAsync(sc => sc.Id == scienceId);
+
+        //    science.Name=updateScienceDto.Name;
+        //    science.Description=updateScienceDto.Description;
+
+        //    await _context.SaveChangesAsync();
+
+        //    return RedirectToAction("GetById", new { scienceId });
+        //}
+
 
     }
 
