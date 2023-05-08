@@ -12,6 +12,10 @@
         "font/bootstrap-icons.json",
         "font/bootstrap-icons.min.css"
       ]
+    },
+    {
+      "library": "aos@2.3.4",
+      "destination": "wwwroot/aos/"
     }
   ]
 }
