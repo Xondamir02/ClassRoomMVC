@@ -26,3 +26,17 @@ C:\Users\hp\Desktop\c# dars\ClassRoomMVC\Classroom.Data\obj\Debug\net6.0\refint\
 C:\Users\hp\Desktop\c# dars\ClassRoomMVC\Classroom.Data\obj\Debug\net6.0\Classroom.Data.pdb
 C:\Users\hp\Desktop\c# dars\ClassRoomMVC\Classroom.Data\obj\Debug\net6.0\Classroom.Data.genruntimeconfig.cache
 C:\Users\hp\Desktop\c# dars\ClassRoomMVC\Classroom.Data\obj\Debug\net6.0\ref\Classroom.Data.dll
+D:\Classroom\Classroom.Data\bin\Debug\net6.0\Classroom.Data.deps.json
+D:\Classroom\Classroom.Data\bin\Debug\net6.0\Classroom.Data.runtimeconfig.json
+D:\Classroom\Classroom.Data\bin\Debug\net6.0\Classroom.Data.dll
+D:\Classroom\Classroom.Data\bin\Debug\net6.0\Classroom.Data.pdb
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.csproj.AssemblyReference.cache
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.AssemblyInfoInputs.cache
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.AssemblyInfo.cs
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.csproj.CoreCompileInputs.cache
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.dll
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\refint\Classroom.Data.dll
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.pdb
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\Classroom.Data.genruntimeconfig.cache
+D:\Classroom\Classroom.Data\obj\Debug\net6.0\ref\Classroom.Data.dll

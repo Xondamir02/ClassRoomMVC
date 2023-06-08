@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pM+YDp5ay5ZBvPiIhlMs8Dvxr43gvNPa7SR3lYNQ+59MTRcgmzlp+C342eJfSuGWE/rk5HD3P/+ekVBsJ+X31w==",
+  "dgSpecHash": "Iv0RuD5Pm/QzELPK/BB5k6DWQ607ydii2AfU+iU6b85hEpLJI5xNC7tG0WY2IQi1A4BLESsiduPSNPNmDw3gmA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\c# dars\\ClassRoomMVC\\Classroom.Data\\Classroom.Data.csproj",
+  "projectFilePath": "D:\\Classroom\\Classroom.Data\\Classroom.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

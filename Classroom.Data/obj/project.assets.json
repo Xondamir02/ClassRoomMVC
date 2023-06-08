@@ -7974,11 +7974,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Desktop\\c# dars\\ClassRoomMVC\\Classroom.Data\\Classroom.Data.csproj",
+      "projectUniqueName": "D:\\Classroom\\Classroom.Data\\Classroom.Data.csproj",
       "projectName": "Classroom.Data",
-      "projectPath": "C:\\Users\\hp\\Desktop\\c# dars\\ClassRoomMVC\\Classroom.Data\\Classroom.Data.csproj",
+      "projectPath": "D:\\Classroom\\Classroom.Data\\Classroom.Data.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Desktop\\c# dars\\ClassRoomMVC\\Classroom.Data\\obj\\",
+      "outputPath": "D:\\Classroom\\Classroom.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
